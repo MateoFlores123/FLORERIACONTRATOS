@@ -244,21 +244,42 @@ function setExportando(activo) {
   [btnImg, btnShr, btnPrt].forEach(b => b && (b.disabled = activo));
 }
 
-/* ─── GENERAR BLOB PNG DEL CONTRATO ─────── */
+/* ─── GENERAR BLOB PNG DEL CONTRATO (A4) ─── */
 async function generarBlob() {
-  const el = document.getElementById('contratoImprimible');
+  const original = document.getElementById('contratoImprimible');
   setExportando(true);
+
+  // Clonar el contrato en un contenedor fijo A4 fuera de pantalla
+  const A4_W = 794;   // px a 96dpi
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = `
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    width: ${A4_W}px;
+    background: #ffffff;
+    font-family: 'Lato', sans-serif;
+    padding: 60px 80px;
+    box-sizing: border-box;
+  `;
+  wrapper.innerHTML = original.innerHTML;
+  document.body.appendChild(wrapper);
+
+  // Esperar a que las fuentes e imágenes carguen
+  await document.fonts.ready;
+  await new Promise(r => setTimeout(r, 300));
+
   try {
-    const canvas = await html2canvas(el, {
-      scale: 2,           // alta resolución
+    const canvas = await html2canvas(wrapper, {
+      scale: 2,
       useCORS: true,
       backgroundColor: '#ffffff',
-      scrollX: 0,
-      scrollY: -window.scrollY,
-      windowWidth: el.scrollWidth,
+      width: A4_W,
+      windowWidth: A4_W,
     });
     return await new Promise(res => canvas.toBlob(res, 'image/png'));
   } finally {
+    document.body.removeChild(wrapper);
     setExportando(false);
   }
 }
