@@ -234,6 +234,82 @@ function imprimirContrato() {
   window.print();
 }
 
+/* ─── HELPERS DE UI ──────────────────────── */
+function setExportando(activo) {
+  const status  = document.getElementById('exportStatus');
+  const btnImg  = document.getElementById('btnImg');
+  const btnShr  = document.getElementById('btnShare');
+  const btnPrt  = document.querySelector('.btn-print');
+  status.style.display = activo ? 'flex' : 'none';
+  [btnImg, btnShr, btnPrt].forEach(b => b && (b.disabled = activo));
+}
+
+/* ─── GENERAR BLOB PNG DEL CONTRATO ─────── */
+async function generarBlob() {
+  const el = document.getElementById('contratoImprimible');
+  setExportando(true);
+  try {
+    const canvas = await html2canvas(el, {
+      scale: 2,           // alta resolución
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      scrollX: 0,
+      scrollY: -window.scrollY,
+      windowWidth: el.scrollWidth,
+    });
+    return await new Promise(res => canvas.toBlob(res, 'image/png'));
+  } finally {
+    setExportando(false);
+  }
+}
+
+/* ─── DESCARGAR COMO IMAGEN ──────────────── */
+async function descargarImagen() {
+  const nombre  = document.getElementById('nombreCliente').value.trim() || 'cliente';
+  const blob    = await generarBlob();
+  const url     = URL.createObjectURL(blob);
+  const a       = document.createElement('a');
+  a.href        = url;
+  a.download    = `contrato-${nombre.replace(/\s+/g, '-').toLowerCase()}.png`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
+/* ─── COMPARTIR (WhatsApp, email, etc.) ─── */
+async function compartir() {
+  const nombre = document.getElementById('nombreCliente').value.trim() || 'cliente';
+  const blob   = await generarBlob();
+  const file   = new File([blob], `contrato-${nombre.replace(/\s+/g, '-').toLowerCase()}.png`, { type: 'image/png' });
+
+  // Web Share API — disponible en móviles modernos y Chrome/Edge en PC
+  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({
+        title: `Contrato Florería Shalom — ${nombre}`,
+        text: `Contrato de arreglos florales para ${nombre}`,
+        files: [file],
+      });
+      return;
+    } catch (e) {
+      if (e.name === 'AbortError') return; // usuario canceló
+    }
+  }
+
+  // Fallback: si el navegador no soporta compartir archivos,
+  // abre WhatsApp Web con un mensaje (sin imagen, la imagen se descarga primero)
+  const blob2  = await generarBlob();
+  const url    = URL.createObjectURL(blob2);
+  const a      = document.createElement('a');
+  a.href       = url;
+  a.download   = `contrato-${nombre.replace(/\s+/g, '-').toLowerCase()}.png`;
+  a.click();
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+    const msg = encodeURIComponent(`Hola! Te adjunto el contrato de arreglos florales — Florería Shalom`);
+    window.open(`https://wa.me/?text=${msg}`, '_blank');
+  }, 800);
+}
+
 /* ─── GENERAR HTML DEL CONTRATO ──────────── */
 function generarContrato() {
   const trato       = document.querySelector('input[name="trato"]:checked')?.value || 'Sr.';

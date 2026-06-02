@@ -213,6 +213,51 @@ body {
 }
 .btn-close:hover { background: var(--cream); }
 
+.btn-img {
+  background: var(--sage);
+  color: var(--white);
+}
+.btn-img:hover { background: #628565; transform: translateY(-1px); }
+
+.btn-share {
+  background: #25D366;
+  color: var(--white);
+}
+.btn-share:hover { background: #1eba57; transform: translateY(-1px); }
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Estado de exportación */
+.export-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--cream);
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  border-bottom: 1px solid var(--cream-dark);
+}
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--cream-dark);
+  border-top-color: var(--terra);
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Modal actions wrap en móvil */
+.modal-actions {
+  flex-wrap: wrap;
+}
+
 .btn-add-section {
   background: var(--sage);
   color: var(--white);
