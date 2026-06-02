@@ -1,0 +1,641 @@
+/* ═══════════════════════════════════════════
+   FLORERÍA SHALOM — ESTILOS
+   Paleta: Terracota, Verde Salvia, Crema, Blanco
+   ═══════════════════════════════════════════ */
+
+:root {
+  --terra:      #C2714F;
+  --terra-dark: #9E5A38;
+  --terra-light:#F0D4C4;
+  --sage:       #7A9E7E;
+  --sage-light: #D6E8D8;
+  --cream:      #FAF5EE;
+  --cream-dark: #F0E6D3;
+  --ink:        #2B2118;
+  --ink-mid:    #6B5344;
+  --white:      #FFFFFF;
+  --shadow:     rgba(43,33,24,0.12);
+  --radius:     12px;
+  --radius-sm:  6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ─────────────────────────────── */
+.app-header {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px var(--shadow);
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+}
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.logo-icon {
+  font-size: 2rem;
+  color: var(--terra);
+  line-height: 1;
+}
+.logo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+.logo-title em {
+  color: var(--terra);
+  font-style: italic;
+}
+.logo-sub {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terra-light);
+  margin-top: 2px;
+}
+
+/* ── CONTAINER ──────────────────────────── */
+.container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── CARDS ──────────────────────────────── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: 0 2px 12px var(--shadow);
+  border-left: 4px solid var(--terra);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.pill {
+  background: var(--terra);
+  color: var(--white);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hint {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  margin-bottom: 1rem;
+}
+
+/* ── FORM GRID ──────────────────────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.field label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.field input[type="text"],
+.field input[type="number"],
+.field input[type="datetime-local"] {
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.75rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--terra);
+  box-shadow: 0 0 0 3px rgba(194,113,79,0.15);
+}
+
+.radio-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 0.2rem;
+}
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.radio-label input[type="radio"] {
+  accent-color: var(--terra);
+  width: 16px;
+  height: 16px;
+}
+
+/* ── BOTONES ────────────────────────────── */
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 1.1rem;
+  transition: all 0.18s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.btn-print {
+  background: var(--terra);
+  color: var(--white);
+}
+.btn-print:hover { background: var(--terra-dark); transform: translateY(-1px); }
+
+.btn-close {
+  background: transparent;
+  color: var(--ink-mid);
+  border: 1.5px solid var(--cream-dark);
+}
+.btn-close:hover { background: var(--cream); }
+
+.btn-add-section {
+  background: var(--sage);
+  color: var(--white);
+  margin-top: 1rem;
+}
+.btn-add-section:hover { background: #628565; transform: translateY(-1px); }
+
+.btn-add-row {
+  background: transparent;
+  color: var(--sage);
+  border: 1.5px solid var(--sage);
+  font-size: 0.78rem;
+  padding: 0.4rem 0.8rem;
+  margin-top: 0.5rem;
+}
+.btn-add-row:hover { background: var(--sage-light); }
+
+.btn-remove {
+  background: transparent;
+  color: #c0392b;
+  border: 1.5px solid #e8b4b0;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-remove:hover { background: #fde8e6; }
+
+/* ── SECCIONES DE ARREGLOS ──────────────── */
+.seccion-arreglo {
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+.seccion-header {
+  background: var(--cream);
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1.5px solid var(--cream-dark);
+}
+.seccion-header input[type="text"] {
+  border: none;
+  background: transparent;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  flex: 1;
+}
+.seccion-header input[type="text"]:focus { outline: none; }
+
+.seccion-body { padding: 0.75rem 1rem 1rem; overflow-x: auto; }
+
+/* ── TABLA DE ITEMS ─────────────────────── */
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 480px;
+}
+.items-table th {
+  background: var(--ink);
+  color: var(--cream);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 0.5rem 0.65rem;
+  text-align: left;
+}
+.items-table td {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--cream-dark);
+  vertical-align: middle;
+}
+.items-table tr:last-child td { border-bottom: none; }
+.items-table tr:nth-child(even) td { background: var(--cream); }
+
+.items-table input {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 0.3rem 0.4rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: transparent;
+  transition: all 0.15s;
+}
+.items-table input:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--terra);
+}
+.items-table input[type="number"] { text-align: right; }
+
+.col-cant  { width: 70px; }
+.col-desc  { min-width: 160px; }
+.col-puni  { width: 110px; }
+.col-ptot  { width: 110px; }
+.col-del   { width: 40px; text-align: center; }
+
+/* ── RESUMEN ────────────────────────────── */
+.resumen-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.resumen-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--cream-dark);
+}
+.resumen-table td:last-child { text-align: right; font-weight: 700; color: var(--terra-dark); }
+.resumen-table .saldo-row td {
+  background: var(--ink);
+  color: var(--white);
+  font-size: 1.05rem;
+  border-bottom: none;
+}
+.resumen-table .saldo-row td:last-child { color: var(--terra-light); }
+
+/* ── MODAL ──────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43,33,24,0.55);
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  max-width: 750px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--cream-dark);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 10;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* ═══════════════════════════════════════════
+   CONTRATO IMPRIMIBLE
+   ═══════════════════════════════════════════ */
+.contrato-print {
+  padding: 2rem 2.5rem;
+  font-family: 'Lato', sans-serif;
+  color: #1a1a1a;
+  background: var(--white);
+}
+
+/* Encabezado floral */
+.cp-header {
+  text-align: center;
+  border-bottom: 3px double var(--terra);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.cp-flowers {
+  font-size: 1.4rem;
+  color: var(--terra-light);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.cp-nombre-floreria {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--terra);
+  line-height: 1;
+}
+.cp-nombre-floreria em {
+  font-style: italic;
+  color: var(--ink);
+}
+.cp-contact {
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  margin-top: 0.4rem;
+}
+
+/* Título contrato */
+.cp-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+
+/* Metadatos */
+.cp-meta {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+.cp-meta strong { color: var(--terra-dark); }
+
+/* Párrafo narrativo */
+.cp-narrativa {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0.9rem 0 1.25rem;
+  text-align: justify;
+}
+
+/* Título de sección */
+.cp-seccion-titulo {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terra-dark);
+  margin: 1.2rem 0 0.4rem;
+  border-left: 3px solid var(--terra);
+  padding-left: 0.5rem;
+}
+
+/* Tabla items impresión */
+.cp-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-bottom: 0.5rem;
+}
+.cp-tabla th {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.45rem 0.6rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+.cp-tabla th.r, .cp-tabla td.r { text-align: right; }
+.cp-tabla td {
+  padding: 0.38rem 0.6rem;
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 0.82rem;
+}
+.cp-tabla tr:nth-child(even) td { background: var(--cream); }
+.cp-tabla .total-row td {
+  font-weight: 700;
+  border-top: 2px solid var(--ink);
+  border-bottom: none;
+  font-size: 0.88rem;
+}
+
+/* Tabla resumen impresión */
+.cp-resumen {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+}
+.cp-resumen td {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--cream-dark);
+}
+.cp-resumen td:first-child { font-weight: 700; background: var(--cream); }
+.cp-resumen td:last-child { text-align: right; }
+.cp-resumen .saldo-row td {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+  font-weight: 700;
+}
+.cp-resumen .cuenta-row td { font-size: 0.78rem; letter-spacing: 0.04em; }
+
+/* Firma */
+.cp-firma {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.cp-firma-box {
+  text-align: center;
+  min-width: 180px;
+}
+.cp-firma-linea {
+  border-top: 1.5px solid var(--ink);
+  margin-bottom: 0.3rem;
+}
+.cp-firma-nombre {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.cp-firma-dni {
+  font-size: 0.75rem;
+  color: var(--ink-mid);
+}
+
+/* Decoración floral pie */
+.cp-footer-deco {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: var(--terra-light);
+  letter-spacing: 0.3em;
+}
+
+/* ── FIRMA UPLOAD ────────────────────────── */
+.firma-upload-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.firma-preview-box {
+  border: 2px dashed var(--cream-dark);
+  border-radius: var(--radius-sm);
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+.firma-preview-box.tiene-firma {
+  border-style: solid;
+  border-color: var(--sage);
+}
+.firma-preview-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.firma-placeholder {
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  text-align: center;
+  padding: 0.5rem;
+}
+.firma-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  justify-content: center;
+}
+.btn-upload {
+  background: var(--terra);
+  color: var(--white);
+  cursor: pointer;
+}
+.btn-upload:hover { background: var(--terra-dark); transform: translateY(-1px); }
+.btn-remove-firma {
+  background: transparent;
+  color: #c0392b;
+  border: 1.5px solid #e8b4b0;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.15s;
+}
+.btn-remove-firma:hover { background: #fde8e6; }
+
+/* Firma en el contrato impreso */
+.cp-firma-img {
+  max-width: 160px;
+  max-height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 0.25rem;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .header-inner { flex-wrap: wrap; }
+  .logo-title { font-size: 1rem; }
+  .container { padding: 0 0.75rem 3rem; }
+  .card { padding: 1.25rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .contrato-print { padding: 1.25rem; }
+  .cp-nombre-floreria { font-size: 1.5rem; }
+  .firma-preview-box { width: 100%; }
+}
+
+/* ═══════════════════════════════════════════
+   IMPRESIÓN
+   ═══════════════════════════════════════════ */
+@media print {
+  body { background: white; }
+  .app-header, .container, .modal-actions, .no-print { display: none !important; }
+  .modal-overlay {
+    position: static;
+    background: none;
+    padding: 0;
+    display: block !important;
+  }
+  .modal-box {
+    box-shadow: none;
+    border-radius: 0;
+    max-width: 100%;
+  }
+  .contrato-print { padding: 1cm 1.5cm; }
+}

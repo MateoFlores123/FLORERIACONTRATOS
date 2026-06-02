@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Florería Shalom — Contratos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <span class="logo-icon">✿</span>
+        <div>
+          <h1 class="logo-title">FLORERÍA <em>"SHALOM"</em></h1>
+          <p class="logo-sub">Sistema de Contratos</p>
+        </div>
+      </div>
+      <button class="btn btn-print" id="btnPreview" onclick="abrirPreview()">
+        <span>🖨</span> Vista previa / Imprimir
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════ FORMULARIO PRINCIPAL ═══════════ -->
+  <main class="container">
+
+    <!-- DATOS DEL CLIENTE -->
+    <section class="card" id="secCliente">
+      <h2 class="section-title">
+        <span class="pill">1</span> Datos del contrato
+      </h2>
+
+      <div class="form-grid">
+        <!-- Fecha -->
+        <div class="field">
+          <label>Fecha</label>
+          <input type="datetime-local" id="fecha" />
+        </div>
+
+        <!-- Colores -->
+        <div class="field">
+          <label>Colores</label>
+          <input type="text" id="colores" placeholder="Ej: Blanco, Terracota" />
+        </div>
+
+        <!-- Tratamiento -->
+        <div class="field">
+          <label>Tratamiento</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="trato" value="Sr." checked /> Sr.</label>
+            <label class="radio-label"><input type="radio" name="trato" value="Sra." /> Sra.</label>
+            <label class="radio-label"><input type="radio" name="trato" value="Srta." /> Srta.</label>
+          </div>
+        </div>
+
+        <!-- Nombre -->
+        <div class="field">
+          <label>Nombre completo del cliente</label>
+          <input type="text" id="nombreCliente" placeholder="Ej: Ana Rocio Arenas" />
+        </div>
+
+        <!-- DNI -->
+        <div class="field">
+          <label>DNI del cliente</label>
+          <input type="text" id="dniCliente" placeholder="Ej: 01324520" maxlength="8" />
+        </div>
+
+        <!-- Adelanto -->
+        <div class="field">
+          <label>Monto de adelanto (S/.)</label>
+          <input type="number" id="adelanto" placeholder="0.00" min="0" step="0.01" oninput="recalcular()" />
+        </div>
+      </div>
+    </section>
+
+    <!-- DESCUENTO Y TRANSPORTE -->
+    <section class="card" id="secExtras">
+      <h2 class="section-title">
+        <span class="pill">2</span> Transporte & Descuento
+      </h2>
+      <div class="form-grid">
+        <div class="field">
+          <label>Transporte (descripción)</label>
+          <input type="text" id="transporteDesc" placeholder="Ej: Iglesia - Local" />
+        </div>
+        <div class="field">
+          <label>Monto transporte (S/.)</label>
+          <input type="number" id="transporteMonto" placeholder="0.00" min="0" step="0.01" oninput="recalcular()" />
+        </div>
+        <div class="field">
+          <label>Descuento (S/.)</label>
+          <input type="number" id="descuento" placeholder="0.00" min="0" step="0.01" oninput="recalcular()" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIONES DE ARREGLOS -->
+    <section class="card" id="secArreglos">
+      <h2 class="section-title">
+        <span class="pill">3</span> Arreglos florales
+      </h2>
+      <p class="hint">Puedes agregar una o más secciones (ej: Local, Iglesia, etc.)</p>
+
+      <div id="secciones-wrap"></div>
+
+      <button class="btn btn-add-section" onclick="agregarSeccion()">
+        ＋ Agregar sección
+      </button>
+    </section>
+
+    <!-- RESUMEN FINANCIERO -->
+    <section class="card" id="secResumen">
+      <h2 class="section-title">
+        <span class="pill">4</span> Resumen financiero
+      </h2>
+      <table class="resumen-table">
+        <tbody>
+          <tr>
+            <td>Total Decoración</td>
+            <td id="rTotal">S/. 0.00</td>
+          </tr>
+          <tr>
+            <td>A Cuenta</td>
+            <td id="rCuenta">S/. 0.00</td>
+          </tr>
+          <tr class="saldo-row">
+            <td><strong>Saldo Total</strong></td>
+            <td id="rSaldo"><strong>S/. 0.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- FIRMA -->
+    <section class="card" id="secFirma">
+      <h2 class="section-title">
+        <span class="pill">5</span> Firma
+      </h2>
+      <p class="hint">Sube la imagen de tu firma. Se guardará en el navegador y aparecerá en todos los contratos.</p>
+
+      <div class="firma-upload-wrap">
+        <div class="firma-preview-box" id="firmaPreviewBox">
+          <span class="firma-placeholder" id="firmaPlaceholder">Sin firma cargada</span>
+          <img id="firmaImg" src="" alt="Firma" style="display:none" />
+        </div>
+        <div class="firma-controls">
+          <label class="btn btn-upload" for="firmaInput">📎 Subir firma</label>
+          <input type="file" id="firmaInput" accept="image/*" style="display:none" onchange="cargarFirma(this)" />
+          <button class="btn btn-remove-firma" id="btnQuitarFirma" style="display:none" onclick="quitarFirma()">✕ Quitar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATOS BANCARIOS -->
+    <section class="card" id="secBanco">
+      <h2 class="section-title">
+        <span class="pill">6</span> Datos bancarios
+      </h2>
+      <div class="form-grid">
+        <div class="field">
+          <label>N° CCI "BCP"</label>
+          <input type="text" id="cci" value="00221519255829502125" />
+        </div>
+        <div class="field">
+          <label>N° Cuenta Corriente "BCP"</label>
+          <input type="text" id="cuentaCorriente" value="21592558295021" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ MODAL PREVIEW / IMPRESIÓN ═══════════ -->
+  <div id="previewModal" class="modal-overlay" style="display:none">
+    <div class="modal-box">
+      <div class="modal-actions no-print">
+        <button class="btn btn-print" onclick="imprimirContrato()">🖨 Imprimir</button>
+        <button class="btn btn-close" onclick="cerrarPreview()">✕ Cerrar</button>
+      </div>
+      <div id="contratoImprimible" class="contrato-print"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
