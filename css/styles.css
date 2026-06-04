@@ -684,3 +684,184 @@ body {
   }
   .contrato-print { padding: 1cm 1.5cm; }
 }
+
+.btn-db{
+  background: var(--sage);
+  color: var(--white);
+}
+
+.btn-db:hover{
+  background:#628565;
+  transform:translateY(-1px);
+}
+
+.header-btns{
+  display:flex;
+  gap:.75rem;
+  flex-wrap:wrap;
+}
+
+.field-wide{
+  grid-column: span 2;
+}
+
+@media(max-width:640px){
+  .field-wide{
+    grid-column:auto;
+  }
+}
+
+.desc-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+}
+
+.desc-main-row{
+  display:flex;
+  gap:.4rem;
+}
+
+.desc-principal{
+  flex:1;
+}
+
+.btn-add-sub{
+  border:none;
+  background:var(--sage-light);
+  color:var(--sage);
+  border-radius:4px;
+  padding:.25rem .5rem;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn-add-sub:hover{
+  background:var(--sage);
+  color:white;
+}
+
+.sub-items{
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+}
+
+.sub-item-row{
+  display:flex;
+  align-items:center;
+  gap:.35rem;
+  padding-left:.5rem;
+}
+
+.sub-guion{
+  color:var(--terra);
+  font-weight:700;
+}
+
+.sub-desc{
+  flex:1;
+  border:1px solid var(--cream-dark);
+  border-radius:4px;
+  padding:.25rem .4rem;
+}
+
+.btn-remove-sub{
+  border:none;
+  background:transparent;
+  color:#c0392b;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.modal-box-bd{
+  max-width:900px;
+}
+
+.bd-lista{
+  max-height:70vh;
+  overflow-y:auto;
+}
+
+.bd-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:1rem;
+  padding:1rem 1.25rem;
+  border-bottom:1px solid var(--cream-dark);
+}
+
+.bd-item:last-child{
+  border-bottom:none;
+}
+
+.bd-item-info{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:.25rem;
+}
+
+.bd-item-meta{
+  font-size:.8rem;
+  color:var(--ink-mid);
+}
+
+.bd-item-btns{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
+
+.cp-info-evento{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:1rem;
+  font-size:.82rem;
+}
+
+.cp-info-evento td{
+  border:1px solid var(--cream-dark);
+  padding:.55rem .7rem;
+}
+
+.cp-info-evento strong{
+  color:var(--terra-dark);
+}
+
+@media(max-width:640px){
+
+  .bd-item{
+    flex-direction:column;
+  }
+
+  .bd-item-btns{
+    width:100%;
+  }
+
+  .header-btns{
+    width:100%;
+  }
+
+  .header-btns .btn{
+    flex:1;
+  }
+
+}
+
+.cp-tabla{
+  page-break-inside:avoid;
+}
+
+.cp-seccion-titulo{
+  page-break-after:avoid;
+}
+
+.cp-firma{
+  page-break-inside:avoid;
+}
+
+.cp-resumen{
+  page-break-inside:avoid;
+}

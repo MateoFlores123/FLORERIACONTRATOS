@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Florería Shalom — Contratos</title>
+  <title>FLORERIASHALON4 — Contratos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
@@ -17,38 +17,74 @@
       <div class="logo-wrap">
         <span class="logo-icon">✿</span>
         <div>
-          <h1 class="logo-title">FLORERÍA <em>"SHALOM"</em></h1>
+          <h1 class="logo-title">FLORERIASHALON4</h1>
           <p class="logo-sub">Sistema de Contratos</p>
         </div>
       </div>
-      <button class="btn btn-print" id="btnPreview" onclick="abrirPreview()">
-        <span>🖨</span> Vista previa / Imprimir
-      </button>
+      <div class="header-btns">
+        <button class="btn btn-db" onclick="abrirBD()">📋 Contratos guardados</button>
+        <button class="btn btn-print" id="btnPreview" onclick="abrirPreview()">
+          <span>🖨</span> Vista previa / Imprimir
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- ═══════════ FORMULARIO PRINCIPAL ═══════════ -->
   <main class="container">
 
-    <!-- DATOS DEL CLIENTE -->
+    <!-- DATOS DEL EVENTO -->
     <section class="card" id="secCliente">
       <h2 class="section-title">
-        <span class="pill">1</span> Datos del contrato
+        <span class="pill">1</span> Datos del evento
       </h2>
 
       <div class="form-grid">
-        <!-- Fecha -->
+        <!-- Fecha del evento -->
         <div class="field">
-          <label>Fecha</label>
-          <input type="datetime-local" id="fecha" />
+          <label>Fecha del evento</label>
+          <input type="date" id="fechaEvento" />
+        </div>
+
+        <!-- Hora de entrega -->
+        <div class="field">
+          <label>Hora de entrega</label>
+          <input type="text" id="horaEntrega" placeholder="Ej: 10AM" />
         </div>
 
         <!-- Colores -->
-        <div class="field">
+        <div class="field field-wide">
           <label>Colores</label>
-          <input type="text" id="colores" placeholder="Ej: Blanco, Terracota" />
+          <input type="text" id="colores" placeholder="Ej: Pasteles blanco, celeste, asuliño y melón" />
         </div>
 
+        <!-- Lugar del evento -->
+        <div class="field field-wide">
+          <label>Lugar del evento (Iglesia / Ceremonia)</label>
+          <input type="text" id="lugarEvento" placeholder="Ej: Santísima Cruz Acequia Alta Cayma" />
+        </div>
+
+        <!-- Local del evento -->
+        <div class="field field-wide">
+          <label>Local del evento (Recepción)</label>
+          <input type="text" id="localEvento" placeholder="Ej: Hacienda Dorada Socabaya" />
+        </div>
+
+        <!-- Fecha del contrato -->
+        <div class="field">
+          <label>Fecha del contrato</label>
+          <input type="datetime-local" id="fecha" />
+        </div>
+      </div>
+    </section>
+
+    <!-- DATOS DEL CLIENTE -->
+    <section class="card" id="secDatosCliente">
+      <h2 class="section-title">
+        <span class="pill">2</span> Datos del cliente (COMPRADOR)
+      </h2>
+
+      <div class="form-grid">
         <!-- Tratamiento -->
         <div class="field">
           <label>Tratamiento</label>
@@ -60,15 +96,21 @@
         </div>
 
         <!-- Nombre -->
-        <div class="field">
+        <div class="field field-wide">
           <label>Nombre completo del cliente</label>
-          <input type="text" id="nombreCliente" placeholder="Ej: Ana Rocio Arenas" />
+          <input type="text" id="nombreCliente" placeholder="Ej: José Antonio Valencia" />
         </div>
 
         <!-- DNI -->
         <div class="field">
           <label>DNI del cliente</label>
-          <input type="text" id="dniCliente" placeholder="Ej: 01324520" maxlength="8" />
+          <input type="text" id="dniCliente" placeholder="Ej: 44915806" maxlength="8" />
+        </div>
+
+        <!-- Celular -->
+        <div class="field">
+          <label>Celular del cliente</label>
+          <input type="text" id="celularCliente" placeholder="Ej: 936500242" maxlength="12" />
         </div>
 
         <!-- Adelanto -->
@@ -82,7 +124,7 @@
     <!-- DESCUENTO Y TRANSPORTE -->
     <section class="card" id="secExtras">
       <h2 class="section-title">
-        <span class="pill">2</span> Transporte & Descuento
+        <span class="pill">3</span> Transporte &amp; Descuento
       </h2>
       <div class="form-grid">
         <div class="field">
@@ -103,9 +145,9 @@
     <!-- SECCIONES DE ARREGLOS -->
     <section class="card" id="secArreglos">
       <h2 class="section-title">
-        <span class="pill">3</span> Arreglos florales
+        <span class="pill">4</span> Arreglos florales
       </h2>
-      <p class="hint">Puedes agregar una o más secciones (ej: Local, Iglesia, etc.)</p>
+      <p class="hint">Puedes agregar una o más secciones (ej: Local, Iglesia…). En la descripción usa el botón <strong>＋ —</strong> para agregar sub-ítems.</p>
 
       <div id="secciones-wrap"></div>
 
@@ -117,7 +159,7 @@
     <!-- RESUMEN FINANCIERO -->
     <section class="card" id="secResumen">
       <h2 class="section-title">
-        <span class="pill">4</span> Resumen financiero
+        <span class="pill">5</span> Resumen financiero
       </h2>
       <table class="resumen-table">
         <tbody>
@@ -140,7 +182,7 @@
     <!-- FIRMA -->
     <section class="card" id="secFirma">
       <h2 class="section-title">
-        <span class="pill">5</span> Firma
+        <span class="pill">6</span> Firma
       </h2>
       <p class="hint">Sube la imagen de tu firma. Se guardará en el navegador y aparecerá en todos los contratos.</p>
 
@@ -160,7 +202,7 @@
     <!-- DATOS BANCARIOS -->
     <section class="card" id="secBanco">
       <h2 class="section-title">
-        <span class="pill">6</span> Datos bancarios
+        <span class="pill">7</span> Datos bancarios
       </h2>
       <div class="form-grid">
         <div class="field">
@@ -170,6 +212,16 @@
         <div class="field">
           <label>N° Cuenta Corriente "BCP"</label>
           <input type="text" id="cuentaCorriente" value="21592558295021" />
+        </div>
+      </div>
+
+      <!-- Guardar contrato -->
+      <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--cream-dark);">
+        <p class="hint">Guarda este contrato en el navegador para poder editarlo o recuperarlo luego.</p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+          <input type="hidden" id="contratoId" value="" />
+          <button class="btn btn-save" onclick="guardarContrato()">💾 Guardar contrato</button>
+          <span id="saveMsg" style="font-size:0.8rem; color:var(--sage); display:none;">✓ Guardado</span>
         </div>
       </div>
     </section>
@@ -185,11 +237,21 @@
         <button class="btn btn-share" onclick="compartir()" id="btnShare">📤 Compartir</button>
         <button class="btn btn-close" onclick="cerrarPreview()">✕ Cerrar</button>
       </div>
-      <!-- Mensaje de estado mientras se genera -->
       <div id="exportStatus" class="export-status" style="display:none">
         <span class="spinner"></span> Generando imagen…
       </div>
       <div id="contratoImprimible" class="contrato-print"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ MODAL BASE DE DATOS ═══════════ -->
+  <div id="bdModal" class="modal-overlay" style="display:none">
+    <div class="modal-box modal-box-bd">
+      <div class="modal-actions no-print">
+        <h3 style="font-family:'Playfair Display',serif; flex:1; font-size:1rem;">📋 Contratos guardados</h3>
+        <button class="btn btn-close" onclick="cerrarBD()">✕ Cerrar</button>
+      </div>
+      <div id="bdLista" class="bd-lista"></div>
     </div>
   </div>
 
